@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 
 import 'shared_counter.dart';
 
-class SecondPage extends StatefulWidget {
-  const SecondPage({Key? key}) : super(key: key);
+class FourthPage extends StatefulWidget {
+  const FourthPage({Key? key}) : super(key: key);
 
   @override
-  State<SecondPage> createState() {
+  State<FourthPage> createState() {
     print('${this.runtimeType}: createState');
-    return _SecondPageState();
+    return _FourthPageState();
   }
 }
 
-class _SecondPageState extends State<SecondPage> {
+class _FourthPageState extends State<FourthPage> {
   @override
   Widget build(BuildContext context) {
     print('${this.runtimeType}: build');
@@ -27,7 +27,7 @@ class _SecondPageState extends State<SecondPage> {
           ),
           child: Center(
             child: Text(
-                'hello aspect counter is ${SharedCounter.withAspect(context, aspect: CounterAspect.hello).helloCounter}'),
+                'world aspect counter is ${SharedCounter.withAspect(context, aspect: CounterAspect.world).worldCounter}'),
           ),
         ));
   }
@@ -51,7 +51,7 @@ class _SecondPageState extends State<SecondPage> {
   }
 
   @override
-  void didUpdateWidget(SecondPage oldWidget) {
+  void didUpdateWidget(FourthPage oldWidget) {
     super.didUpdateWidget(oldWidget);
     print('${this.runtimeType}: didUpdateWidget');
   }

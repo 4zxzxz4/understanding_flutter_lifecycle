@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 
 import 'shared_counter.dart';
 
-class SecondPage extends StatefulWidget {
-  const SecondPage({Key? key}) : super(key: key);
+class FifthPage extends StatefulWidget {
+  const FifthPage({Key? key}) : super(key: key);
 
   @override
-  State<SecondPage> createState() {
+  State<FifthPage> createState() {
     print('${this.runtimeType}: createState');
-    return _SecondPageState();
+    return _FifthPageState();
   }
 }
 
-class _SecondPageState extends State<SecondPage> {
+class _FifthPageState extends State<FifthPage> {
   @override
   Widget build(BuildContext context) {
     print('${this.runtimeType}: build');
@@ -26,8 +26,13 @@ class _SecondPageState extends State<SecondPage> {
             color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
           ),
           child: Center(
-            child: Text(
-                'hello aspect counter is ${SharedCounter.withAspect(context, aspect: CounterAspect.hello).helloCounter}'),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('hello aspect counter is ${SharedCounter.withBuild(context, build: true).helloCounter}'),
+                Text('world aspect counter is ${SharedCounter.withBuild(context, build: true).worldCounter}'),
+              ],
+            ),
           ),
         ));
   }
@@ -51,7 +56,7 @@ class _SecondPageState extends State<SecondPage> {
   }
 
   @override
-  void didUpdateWidget(SecondPage oldWidget) {
+  void didUpdateWidget(FifthPage oldWidget) {
     super.didUpdateWidget(oldWidget);
     print('${this.runtimeType}: didUpdateWidget');
   }

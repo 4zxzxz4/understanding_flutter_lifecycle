@@ -1,7 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:understanding_flutter_lifecycle/pages/fifth_page.dart';
+import 'package:understanding_flutter_lifecycle/pages/fourth_page.dart';
 import 'package:understanding_flutter_lifecycle/pages/shared_counter.dart';
+import 'package:understanding_flutter_lifecycle/pages/third_page.dart';
 
 import 'first_page.dart';
 import 'second_page.dart';
@@ -34,24 +37,11 @@ class _RootPageState extends State<RootPage> {
             child: Center(
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                          onPressed: () {
-                            SharedCounter.of(context, build: false).increaseLeftCounter();
-                          },
-                          child: Text('increase left\ncounter')),
-                      SizedBox(width: 5),
-                      ElevatedButton(
-                          onPressed: () {
-                            SharedCounter.of(context, build: false).increaseRightCounter();
-                          },
-                          child: Text('increase right\ncounter')),
-                    ],
-                  ),
                   Expanded(child: FirstPage()),
                   Expanded(child: SecondPage()),
+                  Expanded(child: ThirdPage()),
+                  Expanded(child: FourthPage()),
+                  Expanded(child: FifthPage()),
                 ],
               ),
             ),

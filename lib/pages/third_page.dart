@@ -3,17 +3,17 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:understanding_flutter_lifecycle/pages/shared_counter.dart';
 
-class FirstPage extends StatefulWidget {
-  const FirstPage({Key? key}) : super(key: key);
+class ThirdPage extends StatefulWidget {
+  const ThirdPage({Key? key}) : super(key: key);
 
   @override
-  State<FirstPage> createState() {
+  State<ThirdPage> createState() {
     print('${this.runtimeType}: createState');
-    return _FirstPageState();
+    return _ThirdPageState();
   }
 }
 
-class _FirstPageState extends State<FirstPage> {
+class _ThirdPageState extends State<ThirdPage> {
   int counter = 0;
 
   @override
@@ -32,15 +32,15 @@ class _FirstPageState extends State<FirstPage> {
             children: [
               ElevatedButton(
                   onPressed: () {
-                    SharedCounter.withAspect(context, aspect: CounterAspect.hello).increaseHelloCounter();
+                    SharedCounter.withAspect(context, aspect: CounterAspect.world).increaseWorldCounter();
                   },
-                  child: Text('increase hello\ncounter')),
+                  child: Text('increase world\ncounter')),
               SizedBox(width: 5),
               ElevatedButton(
                   onPressed: () {
-                    SharedCounter.withAspect(context, aspect: CounterAspect.hello).decreaseHelloCounter();
+                    SharedCounter.withAspect(context, aspect: CounterAspect.world).decreaseWorldCounter();
                   },
-                  child: Text('decrease hello\ncounter')),
+                  child: Text('decrease world\ncounter')),
             ],
           ),
         ),
@@ -73,7 +73,7 @@ class _FirstPageState extends State<FirstPage> {
   }
 
   @override
-  void didUpdateWidget(FirstPage oldWidget) {
+  void didUpdateWidget(ThirdPage oldWidget) {
     super.didUpdateWidget(oldWidget);
     print('${this.runtimeType}: didUpdateWidget');
   }

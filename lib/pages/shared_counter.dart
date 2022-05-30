@@ -10,54 +10,87 @@ class CounterWidget extends StatefulWidget {
 }
 
 class CounterWidgetState extends State<CounterWidget> {
-  int leftCounter = 0;
-  int rightCounter = 0;
+  int helloCounter = 0;
+  int worldCounter = 0;
 
-  increaseLeftCounter() {
+  increaseHelloCounter() {
     super.setState(() {
-      leftCounter++;
+      helloCounter++;
     });
   }
 
-  increaseRightCounter() {
+  decreaseHelloCounter() {
     super.setState(() {
-      rightCounter++;
+      helloCounter--;
+    });
+  }
+
+  increaseWorldCounter() {
+    super.setState(() {
+      worldCounter++;
+    });
+  }
+
+  decreaseWorldCounter() {
+    super.setState(() {
+      worldCounter--;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return SharedCounter(
-      leftCounter: leftCounter,
-      rightCounter: rightCounter,
-      increaseLeftCounter: increaseLeftCounter,
-      increaseRightCounter: increaseRightCounter,
+      helloCounter: helloCounter,
+      worldCounter: worldCounter,
+      increaseHelloCounter: increaseHelloCounter,
+      decreaseHelloCounter: decreaseHelloCounter,
+      increaseWorldCounter: increaseWorldCounter,
+      decreaseWorldCounter: decreaseWorldCounter,
       child: widget.child,
     );
   }
 }
 
-class SharedCounter extends InheritedWidget {
-  final int leftCounter;
-  final int rightCounter;
-  final VoidCallback increaseLeftCounter;
-  final VoidCallback increaseRightCounter;
+enum CounterAspect {
+  hello,
+  world,
+}
+
+class SharedCounter extends InheritedModel<CounterAspect> {
+  final int helloCounter;
+  final int worldCounter;
+  final VoidCallback increaseHelloCounter;
+  final VoidCallback decreaseHelloCounter;
+  final VoidCallback increaseWorldCounter;
+  final VoidCallback decreaseWorldCounter;
 
   const SharedCounter({
     super.key,
-    required this.leftCounter,
-    required this.rightCounter,
-    required this.increaseLeftCounter,
-    required this.increaseRightCounter,
+    required this.helloCounter,
+    required this.worldCounter,
+    required this.increaseHelloCounter,
+    required this.decreaseHelloCounter,
+    required this.increaseWorldCounter,
+    required this.decreaseWorldCounter,
     required super.child,
   });
 
   @override
   bool updateShouldNotify(covariant SharedCounter oldWidget) {
-    return true;
+    return helloCounter != oldWidget.helloCounter || worldCounter != oldWidget.worldCounter;
   }
 
-  static SharedCounter of(BuildContext context, {bool build = true}) {
+  @override
+  bool updateShouldNotifyDependent(covariant SharedCounter oldWidget, Set<CounterAspect> aspects) {
+    return (helloCounter != oldWidget.helloCounter && aspects.contains(CounterAspect.hello)) ||
+        (worldCounter != oldWidget.worldCounter && aspects.contains(CounterAspect.world));
+  }
+
+  static SharedCounter withAspect(BuildContext context, {required CounterAspect aspect}) {
+    return InheritedModel.inheritFrom<SharedCounter>(context, aspect: aspect)!;
+  }
+
+  static SharedCounter withBuild(BuildContext context, {bool build = false}) {
     return build
         ? context.dependOnInheritedWidgetOfExactType<SharedCounter>()!
         : context.findAncestorWidgetOfExactType<SharedCounter>()!;
