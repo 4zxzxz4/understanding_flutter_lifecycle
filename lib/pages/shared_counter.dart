@@ -10,7 +10,7 @@ class CounterWidget extends StatefulWidget {
 }
 
 class CounterWidgetState extends State<CounterWidget> {
-  int value = 0;
+  int value = 1;
 
   increase() {
     super.setState(() {
@@ -46,6 +46,8 @@ class SharedCounter extends InheritedWidget {
   }
 
   static SharedCounter of(BuildContext context, {bool build = true}) {
-    return context.dependOnInheritedWidgetOfExactType<SharedCounter>()!;
+    return build
+        ? context.dependOnInheritedWidgetOfExactType<SharedCounter>()!
+        : context.findAncestorWidgetOfExactType<SharedCounter>()!;
   }
 }
