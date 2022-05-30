@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:understanding_flutter_lifecycle/pages/shared_counter.dart';
+import 'package:understanding_flutter_lifecycle/pages/third_page.dart';
 
 import 'first_page.dart';
 import 'second_page.dart';
@@ -21,24 +23,30 @@ class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     print('${this.runtimeType}: build');
-    return Scaffold(
-      body: Container(
-        color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
-        padding: const EdgeInsets.all(40),
-        child: Center(
-          child: Column(
-            children: [
-              Text('${this.runtimeType}($counter)'),
-              ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      counter++;
-                    });
-                  },
-                  child: Text('increase counter')),
-              Expanded(child: FirstPage()),
-              Expanded(child: SecondPage()),
-            ],
+    return SharedCounter(
+      child: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.red),
+            color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+          ),
+          padding: const EdgeInsets.all(40),
+          child: Center(
+            child: Column(
+              children: [
+                Text('${this.runtimeType}\n(own counter is $counter)'),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        counter++;
+                      });
+                    },
+                    child: Text('increase own counter')),
+                Expanded(child: FirstPage()),
+                Expanded(child: SecondPage()),
+                Expanded(child: ThirdPage()),
+              ],
+            ),
           ),
         ),
       ),

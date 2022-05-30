@@ -17,7 +17,10 @@ class _FirstAPageState extends State<FirstAPage> {
   Widget build(BuildContext context) {
     print('${this.runtimeType}: build');
     return Container(
-      color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.red),
+        color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+      ),
       child: Center(
         child: Text('${this.runtimeType}'),
       ),

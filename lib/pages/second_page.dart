@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:understanding_flutter_lifecycle/pages/second_a_page.dart';
 
 class SecondPage extends StatefulWidget {
   const SecondPage({Key? key}) : super(key: key);
@@ -17,9 +18,21 @@ class _SecondPageState extends State<SecondPage> {
   Widget build(BuildContext context) {
     print('${this.runtimeType}: build');
     return Container(
-      color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.red),
+        color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+      ),
       child: Center(
-        child: Text('${this.runtimeType}'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('${this.runtimeType}'),
+            Container(
+              padding: EdgeInsets.all(40),
+              child: SecondAPage(),
+            ),
+          ],
+        ),
       ),
     );
   }

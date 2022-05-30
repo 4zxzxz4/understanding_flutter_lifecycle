@@ -1,21 +1,20 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:understanding_flutter_lifecycle/pages/first_a_page.dart';
 
-class FirstPage extends StatefulWidget {
-  const FirstPage({Key? key}) : super(key: key);
+import 'shared_counter.dart';
+
+class ThirdPage extends StatefulWidget {
+  const ThirdPage({Key? key}) : super(key: key);
 
   @override
-  State<FirstPage> createState() {
+  State<ThirdPage> createState() {
     print('${this.runtimeType}: createState');
-    return _FirstPageState();
+    return _ThirdPageState();
   }
 }
 
-class _FirstPageState extends State<FirstPage> {
-  int counter = 0;
-
+class _ThirdPageState extends State<ThirdPage> {
   @override
   Widget build(BuildContext context) {
     print('${this.runtimeType}: build');
@@ -28,28 +27,16 @@ class _FirstPageState extends State<FirstPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('${this.runtimeType}\n(own counter is $counter)'),
+            Text('${this.runtimeType}\n(shared counter is ${SharedCounter.of(context).value})'),
             ElevatedButton(
                 onPressed: () {
-                  setState(() {
-                    counter++;
-                  });
+                  setState(() {});
                 },
-                child: Text('increase own counter')),
-            Container(
-              padding: const EdgeInsets.all(40),
-              child: FirstAPage(),
-            )
+                child: Text('increase shared counter')),
           ],
         ),
       ),
     );
-  }
-
-  @override
-  void setState(VoidCallback fn) {
-    super.setState(fn);
-    print('${this.runtimeType}: setState');
   }
 
   @override
@@ -71,7 +58,7 @@ class _FirstPageState extends State<FirstPage> {
   }
 
   @override
-  void didUpdateWidget(FirstPage oldWidget) {
+  void didUpdateWidget(ThirdPage oldWidget) {
     super.didUpdateWidget(oldWidget);
     print('${this.runtimeType}: didUpdateWidget');
   }

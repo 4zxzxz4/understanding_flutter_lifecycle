@@ -1,21 +1,19 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:understanding_flutter_lifecycle/pages/first_a_page.dart';
+import 'package:understanding_flutter_lifecycle/pages/shared_counter.dart';
 
-class FirstPage extends StatefulWidget {
-  const FirstPage({Key? key}) : super(key: key);
+class SecondAPage extends StatefulWidget {
+  const SecondAPage({Key? key}) : super(key: key);
 
   @override
-  State<FirstPage> createState() {
+  State<SecondAPage> createState() {
     print('${this.runtimeType}: createState');
-    return _FirstPageState();
+    return _SecondAPageState();
   }
 }
 
-class _FirstPageState extends State<FirstPage> {
-  int counter = 0;
-
+class _SecondAPageState extends State<SecondAPage> {
   @override
   Widget build(BuildContext context) {
     print('${this.runtimeType}: build');
@@ -26,20 +24,13 @@ class _FirstPageState extends State<FirstPage> {
       ),
       child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('${this.runtimeType}\n(own counter is $counter)'),
+            Text('${this.runtimeType}\n(shared counter is ${SharedCounter.of(context).value})'),
             ElevatedButton(
                 onPressed: () {
-                  setState(() {
-                    counter++;
-                  });
+                  setState(() {});
                 },
-                child: Text('increase own counter')),
-            Container(
-              padding: const EdgeInsets.all(40),
-              child: FirstAPage(),
-            )
+                child: Text('increase shared counter')),
           ],
         ),
       ),
@@ -71,7 +62,7 @@ class _FirstPageState extends State<FirstPage> {
   }
 
   @override
-  void didUpdateWidget(FirstPage oldWidget) {
+  void didUpdateWidget(SecondAPage oldWidget) {
     super.didUpdateWidget(oldWidget);
     print('${this.runtimeType}: didUpdateWidget');
   }
