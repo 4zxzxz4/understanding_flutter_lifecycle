@@ -1,7 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:understanding_flutter_lifecycle/pages/second_a_page.dart';
+
+import 'shared_counter.dart';
 
 class SecondPage extends StatefulWidget {
   const SecondPage({Key? key}) : super(key: key);
@@ -17,22 +18,33 @@ class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     print('${this.runtimeType}: build');
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.red),
-        color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
-      ),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('${this.runtimeType}'),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: SecondAPage(),
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.red),
+                color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+              ),
+              child: Center(
+                child: Text('${SharedCounter.of(context).leftCounter}'),
+              ),
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.red),
+                color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+              ),
+              child: Center(
+                child: Text('${SharedCounter.of(context).rightCounter}'),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,9 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:understanding_flutter_lifecycle/pages/fourth_page.dart';
 import 'package:understanding_flutter_lifecycle/pages/shared_counter.dart';
-import 'package:understanding_flutter_lifecycle/pages/third_page.dart';
 
 import 'first_page.dart';
 import 'second_page.dart';
@@ -25,46 +23,41 @@ class _RootPageState extends State<RootPage> {
   Widget build(BuildContext context) {
     print('${this.runtimeType}: build');
     return CounterWidget(
-      child: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.red),
-            color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
-          ),
-          padding: const EdgeInsets.all(20),
-          child: Center(
-            child: Column(
-              children: [
-                Text('${this.runtimeType}\n(own counter is $counter)'),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            counter++;
-                          });
-                        },
-                        child: Text('increase\nown counter')),
-                    SizedBox(width: 5),
-                    ElevatedButton(
-                        onPressed: () {
-                          setState(() {
-                            counter--;
-                          });
-                        },
-                        child: Text('decrease\nown counter')),
-                  ],
-                ),
-                Expanded(child: FirstPage()),
-                Expanded(child: SecondPage()),
-                Expanded(child: ThirdPage()),
-                Expanded(child: FourthPage()),
-              ],
+      child: Builder(builder: (context) {
+        return Scaffold(
+          body: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.red),
+              color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+            ),
+            padding: const EdgeInsets.all(20),
+            child: Center(
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {
+                            SharedCounter.of(context, build: false).increaseLeftCounter();
+                          },
+                          child: Text('increase left\ncounter')),
+                      SizedBox(width: 5),
+                      ElevatedButton(
+                          onPressed: () {
+                            SharedCounter.of(context, build: false).increaseRightCounter();
+                          },
+                          child: Text('increase right\ncounter')),
+                    ],
+                  ),
+                  Expanded(child: FirstPage()),
+                  Expanded(child: SecondPage()),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 

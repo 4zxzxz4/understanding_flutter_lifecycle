@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:understanding_flutter_lifecycle/pages/first_a_page.dart';
+import 'package:understanding_flutter_lifecycle/pages/shared_counter.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({Key? key}) : super(key: key);
@@ -19,42 +19,33 @@ class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     print('${this.runtimeType}: build');
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.red),
-        color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
-      ),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('${this.runtimeType}\n(own counter is $counter)'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        counter++;
-                      });
-                    },
-                    child: Text('increase\nown counter')),
-                SizedBox(width: 5),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        counter++;
-                      });
-                    },
-                    child: Text('decrease \nown counter')),
-              ],
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Row(
+        children: [
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.red),
+                color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+              ),
+              child: Center(
+                child: Text('${SharedCounter.of(context).leftCounter}'),
+              ),
             ),
-            Container(
-              padding: const EdgeInsets.all(10),
-              child: FirstAPage(),
-            )
-          ],
-        ),
+          ),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.red),
+                color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
+              ),
+              child: Center(
+                child: Text('${SharedCounter.of(context).rightCounter}'),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

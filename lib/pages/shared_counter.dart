@@ -10,38 +10,50 @@ class CounterWidget extends StatefulWidget {
 }
 
 class CounterWidgetState extends State<CounterWidget> {
-  int value = 1;
+  int leftCounter = 0;
+  int rightCounter = 0;
 
-  increase() {
+  increaseLeftCounter() {
     super.setState(() {
-      value++;
+      leftCounter++;
     });
   }
 
-  decrease() {
+  increaseRightCounter() {
     super.setState(() {
-      value--;
+      rightCounter++;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return SharedCounter(state: this, child: widget.child);
+    return SharedCounter(
+      leftCounter: leftCounter,
+      rightCounter: rightCounter,
+      increaseLeftCounter: increaseLeftCounter,
+      increaseRightCounter: increaseRightCounter,
+      child: widget.child,
+    );
   }
 }
 
-// 어떻게 이 위젯을 리빌드 시킬 수 있을까? → 부모 위젯이 리빌드 되면 자식 위젯도 리빌드 된다
 class SharedCounter extends InheritedWidget {
-  // ShareCounter가 리빌드 될 수 있도록 부모의 상태를 외부로 노출시켜야 한다
-  final CounterWidgetState state;
+  final int leftCounter;
+  final int rightCounter;
+  final VoidCallback increaseLeftCounter;
+  final VoidCallback increaseRightCounter;
 
-  const SharedCounter({super.key, required this.state, required super.child});
+  const SharedCounter({
+    super.key,
+    required this.leftCounter,
+    required this.rightCounter,
+    required this.increaseLeftCounter,
+    required this.increaseRightCounter,
+    required super.child,
+  });
 
   @override
   bool updateShouldNotify(covariant SharedCounter oldWidget) {
-    // SharedCounter가 리빌드 될 때 BuildContext에 있는 SharedCounter와,
-    // 부모에 의해 새롭게 생긴 SharedCounter가 무엇이 다른지 비교하여
-    // SharedCounter를 dependOn하는 위젯들에게만 `didChangeDependencies`를 호출하여 리빌드 시킨다.
     return true;
   }
 
