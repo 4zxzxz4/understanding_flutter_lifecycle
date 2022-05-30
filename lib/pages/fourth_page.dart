@@ -27,7 +27,7 @@ class _FourthPageState extends State<FourthPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('${this.runtimeType}\n(shared counter is ${SharedCounter.of(context).state.value})'),
+            Text('${this.runtimeType}\n(shared counter is ${SharedCounter.of(context, build: false).state.value})'),
           ],
         ),
       ),
