@@ -16,6 +16,8 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
+  int counter = 0;
+
   @override
   Widget build(BuildContext context) {
     print('${this.runtimeType}: build');
@@ -23,11 +25,21 @@ class _RootPageState extends State<RootPage> {
       body: Container(
         color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
         padding: const EdgeInsets.all(40),
-        child: Column(
-          children: [
-            Expanded(child: FirstPage()),
-            Expanded(child: SecondPage()),
-          ],
+        child: Center(
+          child: Column(
+            children: [
+              Text('${this.runtimeType}($counter)'),
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      counter++;
+                    });
+                  },
+                  child: Text('increase counter')),
+              Expanded(child: FirstPage()),
+              Expanded(child: SecondPage()),
+            ],
+          ),
         ),
       ),
     );
