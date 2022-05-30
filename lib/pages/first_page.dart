@@ -34,13 +34,13 @@ class _FirstPageState extends State<FirstPage> {
                   onPressed: () {
                     SharedCounter.withAspect(context, aspect: CounterAspect.hello).increaseHelloCounter();
                   },
-                  child: Text('increase hello\ncounter')),
+                  child: Text('increase hello aspect\ncounter')),
               SizedBox(width: 5),
               ElevatedButton(
                   onPressed: () {
                     SharedCounter.withAspect(context, aspect: CounterAspect.hello).decreaseHelloCounter();
                   },
-                  child: Text('decrease hello\ncounter')),
+                  child: Text('decrease hello aspect\ncounter')),
             ],
           ),
         ),

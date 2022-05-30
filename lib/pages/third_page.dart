@@ -34,13 +34,13 @@ class _ThirdPageState extends State<ThirdPage> {
                   onPressed: () {
                     SharedCounter.withAspect(context, aspect: CounterAspect.world).increaseWorldCounter();
                   },
-                  child: Text('increase world\ncounter')),
+                  child: Text('increase world aspect\ncounter')),
               SizedBox(width: 5),
               ElevatedButton(
                   onPressed: () {
                     SharedCounter.withAspect(context, aspect: CounterAspect.world).decreaseWorldCounter();
                   },
-                  child: Text('decrease world\ncounter')),
+                  child: Text('decrease world apspect\ncounter')),
             ],
           ),
         ),
