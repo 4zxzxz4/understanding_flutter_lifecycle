@@ -27,12 +27,23 @@ class _ThirdPageState extends State<ThirdPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('${this.runtimeType}\n(shared counter is ${SharedCounter.of(context).value})'),
-            ElevatedButton(
-                onPressed: () {
-                  setState(() {});
-                },
-                child: Text('increase shared counter')),
+            Text('${this.runtimeType}\n(shared counter is ${SharedCounter.of(context).state.value})'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      SharedCounter.of(context).state.increase();
+                    },
+                    child: Text('increase\nshared counter')),
+                SizedBox(width: 5),
+                ElevatedButton(
+                    onPressed: () {
+                      SharedCounter.of(context).state.decrease();
+                    },
+                    child: Text('decrease\nshared counter')),
+              ],
+            ),
           ],
         ),
       ),

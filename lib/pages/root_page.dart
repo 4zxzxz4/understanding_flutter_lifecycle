@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:understanding_flutter_lifecycle/pages/fourth_page.dart';
 import 'package:understanding_flutter_lifecycle/pages/shared_counter.dart';
 import 'package:understanding_flutter_lifecycle/pages/third_page.dart';
 
@@ -23,28 +24,42 @@ class _RootPageState extends State<RootPage> {
   @override
   Widget build(BuildContext context) {
     print('${this.runtimeType}: build');
-    return SharedCounter(
+    return CounterWidget(
       child: Scaffold(
         body: Container(
           decoration: BoxDecoration(
             border: Border.all(color: Colors.red),
             color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
           ),
-          padding: const EdgeInsets.all(40),
+          padding: const EdgeInsets.all(20),
           child: Center(
             child: Column(
               children: [
                 Text('${this.runtimeType}\n(own counter is $counter)'),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        counter++;
-                      });
-                    },
-                    child: Text('increase own counter')),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            counter++;
+                          });
+                        },
+                        child: Text('increase\nown counter')),
+                    SizedBox(width: 5),
+                    ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            counter--;
+                          });
+                        },
+                        child: Text('decrease\nown counter')),
+                  ],
+                ),
                 Expanded(child: FirstPage()),
                 Expanded(child: SecondPage()),
                 Expanded(child: ThirdPage()),
+                Expanded(child: FourthPage()),
               ],
             ),
           ),

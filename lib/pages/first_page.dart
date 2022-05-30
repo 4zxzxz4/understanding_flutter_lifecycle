@@ -29,15 +29,28 @@ class _FirstPageState extends State<FirstPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('${this.runtimeType}\n(own counter is $counter)'),
-            ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    counter++;
-                  });
-                },
-                child: Text('increase own counter')),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        counter++;
+                      });
+                    },
+                    child: Text('increase\nown counter')),
+                SizedBox(width: 5),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        counter++;
+                      });
+                    },
+                    child: Text('decrease \nown counter')),
+              ],
+            ),
             Container(
-              padding: const EdgeInsets.all(40),
+              padding: const EdgeInsets.all(10),
               child: FirstAPage(),
             )
           ],
