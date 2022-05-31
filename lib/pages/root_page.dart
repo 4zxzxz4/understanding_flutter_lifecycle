@@ -1,13 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:understanding_flutter_lifecycle/pages/fifth_page.dart';
-import 'package:understanding_flutter_lifecycle/pages/fourth_page.dart';
 import 'package:understanding_flutter_lifecycle/pages/shared_counter.dart';
-import 'package:understanding_flutter_lifecycle/pages/third_page.dart';
 
+import 'fifth_page.dart';
 import 'first_page.dart';
+import 'fourth_page.dart';
 import 'second_page.dart';
+import 'third_page.dart';
 
 class RootPage extends StatefulWidget {
   const RootPage({Key? key}) : super(key: key);

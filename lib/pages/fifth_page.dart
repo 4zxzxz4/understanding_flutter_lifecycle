@@ -29,8 +29,12 @@ class _FifthPageState extends State<FifthPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('hello aspect counter is ${SharedCounter.withBuild(context, build: true).helloCounter}'),
-                Text('world aspect counter is ${SharedCounter.withBuild(context, build: true).worldCounter}'),
+                Text('In Hello And World Aspect'),
+                Text(''),
+                Text(
+                    'hello aspect counter is ${SharedCounter.withAspect(context, aspect: CounterAspect.hello).helloCounter}'),
+                Text(
+                    'world aspect counter is ${SharedCounter.withAspect(context, aspect: CounterAspect.world).worldCounter}'),
               ],
             ),
           ),

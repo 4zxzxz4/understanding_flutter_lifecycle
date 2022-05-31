@@ -82,7 +82,10 @@ class SharedCounter extends InheritedModel<CounterAspect> {
 
   @override
   bool updateShouldNotifyDependent(covariant SharedCounter oldWidget, Set<CounterAspect> aspects) {
-    return (helloCounter != oldWidget.helloCounter && aspects.contains(CounterAspect.hello)) ||
+    // 각 위젯의 aspect와 현재 inheritedModel의 값을 평가하며 apsect에 종속되어있는 값이 바뀌었을 때
+    // inheritFrom을 통해 inheritedModel을 사용하고 있는 위젯이 리빌드 되어야하는지 결정한다
+    print(aspects);
+    return ((helloCounter != oldWidget.helloCounter) && aspects.contains(CounterAspect.hello)) ||
         (worldCounter != oldWidget.worldCounter && aspects.contains(CounterAspect.world));
   }
 

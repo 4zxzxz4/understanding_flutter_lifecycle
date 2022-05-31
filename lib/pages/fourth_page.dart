@@ -26,8 +26,17 @@ class _FourthPageState extends State<FourthPage> {
             color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
           ),
           child: Center(
-            child: Text(
-                'world aspect counter is ${SharedCounter.withAspect(context, aspect: CounterAspect.world).worldCounter}'),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('In World Aspect'),
+                Text(''),
+                Text(
+                    'world aspect helloCounter is ${SharedCounter.withAspect(context, aspect: CounterAspect.world).helloCounter}'),
+                Text(
+                    'world aspect worldCounter is ${SharedCounter.withAspect(context, aspect: CounterAspect.world).worldCounter}'),
+              ],
+            ),
           ),
         ));
   }

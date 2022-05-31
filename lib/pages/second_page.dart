@@ -26,8 +26,17 @@ class _SecondPageState extends State<SecondPage> {
             color: Colors.primaries[Random().nextInt(Colors.primaries.length)],
           ),
           child: Center(
-            child: Text(
-                'hello aspect counter is ${SharedCounter.withAspect(context, aspect: CounterAspect.hello).helloCounter}'),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('In Hello Aspect'),
+                Text(''),
+                Text(
+                    'hello aspect helloCounter is ${SharedCounter.withAspect(context, aspect: CounterAspect.hello).helloCounter}'),
+                Text(
+                    'hello aspect worldCounter is ${SharedCounter.withAspect(context, aspect: CounterAspect.hello).worldCounter}'),
+              ],
+            ),
           ),
         ));
   }

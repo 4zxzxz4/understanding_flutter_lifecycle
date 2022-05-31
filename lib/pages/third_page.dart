@@ -30,17 +30,40 @@ class _ThirdPageState extends State<ThirdPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ElevatedButton(
-                  onPressed: () {
-                    SharedCounter.withAspect(context, aspect: CounterAspect.world).increaseWorldCounter();
-                  },
-                  child: Text('increase world aspect\ncounter')),
+              Text('In World Aspect'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        SharedCounter.withBuild(context, build: false).increaseHelloCounter();
+                      },
+                      child: Text('+ hello counter')),
+                  SizedBox(width: 5),
+                  ElevatedButton(
+                      onPressed: () {
+                        SharedCounter.withBuild(context, build: false).decreaseHelloCounter();
+                      },
+                      child: Text('- hello counter')),
+                ],
+              ),
               SizedBox(width: 5),
-              ElevatedButton(
-                  onPressed: () {
-                    SharedCounter.withAspect(context, aspect: CounterAspect.world).decreaseWorldCounter();
-                  },
-                  child: Text('decrease world apspect\ncounter')),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        SharedCounter.withBuild(context, build: false).increaseWorldCounter();
+                      },
+                      child: Text('+  world counter')),
+                  SizedBox(width: 5),
+                  ElevatedButton(
+                      onPressed: () {
+                        SharedCounter.withBuild(context, build: false).decreaseWorldCounter();
+                      },
+                      child: Text('- world counter')),
+                ],
+              ),
             ],
           ),
         ),
